@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import {LeafletMap, TileLayer} from 'leaflet';
+import { LeafletMap, TileLayer } from 'leaflet';
 import 'leaflet/styles.css';
 
 function Map() {
@@ -21,6 +21,7 @@ function Map() {
     return (
         <>
             <div id="map" style={{ height: 400 }}></div>
+            {/* <Map /> */}
         </>
     )
 }
