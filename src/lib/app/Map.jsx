@@ -1,11 +1,19 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { LeafletMap, TileLayer, Marker } from 'leaflet';
 import 'leaflet/styles.css';
 
 function Map() {
+    const [buttonText, setButtonText] = useState("EDIT : OFF");
     const editMode = useRef(false);
     function editMap() {
-        editMode.current = !editMode.current;
+        if (editMode.current){
+            editMode.current = false;
+            setButtonText("EDIT : OFF");
+        }
+        else {
+            editMode.current = true;
+            setButtonText("EDIT : ON");
+        }
     }
 
     useEffect(() => {
@@ -32,14 +40,11 @@ function Map() {
         };
 
     }, [])
-
-    
-
     
 
     return (
         <>
-            <button onClick={editMap}>EDIT</button>
+            <button onClick={editMap}>{buttonText}</button>
             <div id="map" style={{ height: 400 }}></div>
             {/* <Map /> */}
         </>
