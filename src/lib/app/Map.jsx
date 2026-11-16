@@ -3,6 +3,11 @@ import { LeafletMap, TileLayer, Marker } from 'leaflet';
 import 'leaflet/styles.css';
 
 function Map() {
+    const editMode = useRef(false);
+    function editMap() {
+        editMode.current = !editMode.current;
+    }
+
     useEffect(() => {
         const map = new LeafletMap('map').setView([46.15313, -1.14584], 15);
 
@@ -15,7 +20,9 @@ function Map() {
         const marker = new Marker([46.15313, -1.14584]).addTo(map);
 
         function onMapClick(e) {
-            new Marker(e.latlng).addTo(map);
+            if (editMode.current){
+                new Marker(e.latlng).addTo(map);
+            }
         }
 
         map.on('click', onMapClick);
@@ -26,8 +33,13 @@ function Map() {
 
     }, [])
 
+    
+
+    
+
     return (
         <>
+            <button onClick={editMap}>EDIT</button>
             <div id="map" style={{ height: 400 }}></div>
             {/* <Map /> */}
         </>
