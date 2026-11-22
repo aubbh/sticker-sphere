@@ -1,31 +1,35 @@
-//import getPoints from ./Map.jsx
+import { supabase } from '../services/supabaseClient'
 
-function CreatePoint(position) {
+function CreatePoint({position, uid, onCreated, onClose}) {
+    async function createPoint(e) {
+        e.preventDefault()
+        const image = new FormData(e.target).get('image')
 
-
-    function closeModal() {
-        modal?.close();
-    }
-    async function createPoint() {
         const { data, error } = await supabase.from('points').insert([
         {
-            user_id: uid.current,
-            lat: position.latlng.lat,
-            lng: position.latlng.lng,
+            user_id: uid,
+            lat: position.lat,
+            lng: position.lng,
+            image: image
         },
         ])
-        getPoints()
-        //new Marker(e.latlng).addTo(map.current);
+
+        onCreated()
     }
     return(
         <>
-            <dialog id="modal">
+            <h1>
+                {position.lat.toFixed(5)}, {position.lng.toFixed(5)}
+            </h1>
+            <dialog id="modal" open>
                 <p>Test Modal</p>
-                <input type="text">
-                    {/* onChange={(event) => this.setState({enteredValue: event.target.value})}> */}
-                </input>;
-                <button onClick={closeModal}>Close</button>
-                <button onClick={createPoint}>Create</button>
+                <form onSubmit={createPoint}>
+                    <label>
+                        <input name="image" />
+                    </label>
+                    <button type="submit">Create</button>
+                </form>
+                <button onClick={onClose}>Close</button>
             </dialog>
         </>
     )
