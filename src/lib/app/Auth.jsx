@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../services/supabaseClient'
-import Map from './Map.jsx'
+import MapView from './MapView.jsx'
 
 export default function Auth() {
     const [loading, setLoading] = useState(false)
@@ -66,7 +66,7 @@ export default function Auth() {
                         <p>Chargement des données...</p>
                     )}
 
-                    <Map ></Map>
+                    <MapView></MapView>
 
                     <button onClick={() => setAuthenticated(false)} style={{ marginTop: '1rem' }}>
                         Se déconnecter
