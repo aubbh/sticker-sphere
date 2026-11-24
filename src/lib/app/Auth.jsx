@@ -29,15 +29,23 @@ export default function Auth() {
         if (!authenticated) return;
 
         async function verifierConnexion() {
-            const { data, error } = await supabase.from('test_table').select('*')
+            const { data: { user }, error: errorUser } = await supabase.auth.getUser();
 
-            if (error) {
-                console.error("Erreur Supabase :", error)
-                setErreur(error.message)
+            if (errorUser) {
+                console.error("Erreur Supabase user :", errorUser)
+                setErreur(errorUser.message)
             } else {
-                console.log("Données reçues :", data)
-                setDonnees(data)
+                const { data, error } = await supabase.from('profiles').select('pseudo').eq('uuid', user.id);
+
+                if (error) {
+                    console.error("Erreur Supabase :", error)
+                    setErreur(error.message)
+                } else {
+                    console.log("Auth OK")
+                    setDonnees(data)
+                }
             }
+
         }
 
         verifierConnexion()
@@ -59,8 +67,7 @@ export default function Auth() {
 
                     {donnees ? (
                         <div style={{ color: 'green' }}>
-                            <p>Connexion réussie - Données de la base :</p>
-                            <pre>{JSON.stringify(donnees[0]["message"], null, 2)}</pre>
+                            <p>Bonjour {donnees[0]["pseudo"]}</p>
                         </div>
                     ) : (
                         <p>Chargement des données...</p>
