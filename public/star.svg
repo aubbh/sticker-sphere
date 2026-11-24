@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="467 470 80 80">
 <style>
 .outline{fill:#fff; stroke:#000} .inside{fill:#fdd6ff; stroke:#fdd6ff}
-.outline {stroke-width:0} .inside {stroke-width:3}
+.outline {stroke-width:2} .inside {stroke-width:3}
 @media (prefers-color-scheme:dark){
     .outline{fill:#000; stroke:#fff} .inside{fill:#ff0000; stroke:#ff0000}
 }</style>
