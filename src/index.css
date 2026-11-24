@@ -25,13 +25,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --navbarHeight: 10svh;
+
   @media (max-width: 1024px) {
     font-size: 16px;
   }
 
   /* CUSTOM CSS BY LESBIANS OF 409*/
-  --navbarHeight: 10%;
-  --paddingFromDeviceLimits: 1%;
+  --paddingFromDeviceLimits: 1vh;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -59,6 +60,7 @@ body {
 }
 
 #root {
+  height: 100svh;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -67,6 +69,7 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+
 }
 
 h1,
@@ -111,7 +114,6 @@ p {
   position: absolute;
   bottom: 0px;
   background-color: var(--bg);
-  height: var(--navbarHeight);
   border: solid 2px;
 }
 
@@ -121,11 +123,15 @@ p {
   flex-wrap: wrap;
   justify-content: space-around;
   margin: 0;
-  padding: 8px 5%;
+  padding: var(--paddingFromDeviceLimits) 0;
 }
 
 .navbar li {
-  vertical-align: middle;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .svg-icon svg {
@@ -156,7 +162,7 @@ p {
 }
 
 #map {
-  height: calc(100vh - 50px);
+  height: calc(100vh - var(--navbarHeight));
   width: 100%;
 }
 
