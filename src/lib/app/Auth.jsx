@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../services/supabaseClient'
 import MapView from './MapView.jsx'
 import NavBar from './NavBar.jsx'
-import { Pin } from '../services/iconService.jsx'
 
 export default function Auth() {
     const [loading, setLoading] = useState(false)
@@ -100,7 +99,6 @@ export default function Auth() {
                         </div>
                     </form>
                     {message && <p>{message}</p>}
-                    <Pin size={50}></Pin>
                 </div>
             )}
         </div>
