@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { supabase } from '../services/supabaseClient'
-import { LeafletMap, TileLayer, Marker, LayerGroup } from 'leaflet';
+import { LeafletMap, TileLayer, Marker, LayerGroup, Icon } from 'leaflet';
 import CreatePoint from './CreatePoint.jsx'
 import 'leaflet/styles.css';
+import { Pin } from '../services/iconService.jsx'
+import pinUrl from '../../assets/icons/pin.svg';
 
 function MapView() {
     const [buttonText, setButtonText] = useState("EDIT : OFF");
@@ -11,6 +13,11 @@ function MapView() {
     const points = useRef(null)
     const map = useRef()
     const [position, setPosition] = useState(null)
+
+    var classicIcon = new Icon({
+        iconUrl: pinUrl,
+        iconSize: [38, 50],
+    })
 
     function editMap() {
         if (editMode.current){
@@ -49,7 +56,7 @@ function MapView() {
             points.current.clearLayers()
             data.forEach(element => {
                 console.log(element);
-                new Marker([element.lat, element.lng]).addTo(points.current);
+                new Marker([element.lat, element.lng], {icon: classicIcon}).addTo(points.current);
             });
         }
     }
@@ -65,6 +72,9 @@ function MapView() {
         function onMapClick(e) {
             if (editMode.current){
                 setPosition(e.latlng)
+            }
+            else {
+                console.log("CREATION IMPOSSIBLE")
             }
         }
 
@@ -88,8 +98,22 @@ function MapView() {
 
     return (
         <>
-            <button onClick={editMap}>{buttonText}</button>
-            <div id="map" style={{ height: 400 }}></div>
+            <div style={{ position: 'relative' }}>
+                <div id="map" style={{ height: 'calc(100vh - 50px)' }}></div>
+                <button
+                    onClick={editMap}
+                    style={{
+                        position: 'absolute',
+                        bottom: 10,
+                        right: 10,
+                        zIndex: 1000,
+                        width: 'auto',
+                        height: 'auto',
+                    }}
+                >
+                    {buttonText}
+                </button>
+            </div>
             {/* display a popUp if a position is recorded */}
             {position && ( 
                 <CreatePoint 
