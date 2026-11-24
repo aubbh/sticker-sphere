@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../services/supabaseClient'
 import MapView from './MapView.jsx'
+import NavBar from './NavBar.jsx'
 
 export default function Auth() {
     const [loading, setLoading] = useState(false)
@@ -54,10 +55,11 @@ export default function Auth() {
 
 
     return (
-        <div style={{ maxWidth: '400px', margin: '0 auto', padding: '2rem' }}>
+        // <div style={{ maxWidth: '400px', margin: '0 auto', padding: '2rem' }}>
+        <div>
             {authenticated ? (
                 <div>
-                    <h1>Statut de la connexion Supabase</h1>
+                    {/* <h1>Statut de la connexion Supabase</h1>
 
                     {erreur && (
                         <div style={{ color: 'red' }}>
@@ -71,13 +73,15 @@ export default function Auth() {
                         </div>
                     ) : (
                         <p>Chargement des données...</p>
-                    )}
+                    )} */}
 
                     <MapView></MapView>
+                    
 
                     <button onClick={() => setAuthenticated(false)} style={{ marginTop: '1rem' }}>
                         Se déconnecter
                     </button>
+                    <NavBar></NavBar>
                 </div>
             ) : (
                 <div>
@@ -102,7 +106,6 @@ export default function Auth() {
                         </div>
                     </form>
                     {message && <p>{message}</p>}
-
                 </div>
             )}
         </div>

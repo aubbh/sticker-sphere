@@ -4,7 +4,7 @@ import Auth from './Auth.jsx'
 
 function App() {
   return (
-    <div style={{ padding: '2rem' }}>
+    <div>
 
       <Auth ></Auth>
 
