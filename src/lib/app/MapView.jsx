@@ -20,7 +20,7 @@ function MapView() {
     })
 
     function editMap() {
-        if (editMode.current){
+        if (editMode.current) {
             editMode.current = false;
             setButtonText("EDIT : OFF");
         }
@@ -56,7 +56,7 @@ function MapView() {
             points.current.clearLayers()
             data.forEach(element => {
                 console.log(element);
-                new Marker([element.lat, element.lng], {icon: classicIcon}).addTo(points.current);
+                new Marker([element.lat, element.lng], { icon: classicIcon }).addTo(points.current);
             });
         }
     }
@@ -70,10 +70,10 @@ function MapView() {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map.current);
         function onMapClick(e) {
-            if (editMode.current){
+            if (editMode.current) {
                 setPosition(e.latlng)
             }
-            else {
+            else {
                 console.log("CREATION IMPOSSIBLE")
             }
         }
@@ -88,7 +88,7 @@ function MapView() {
             map.current.remove();
         };
     }, [])
-    
+
     // Once a point is created we need to be able to display it
     function handleCreated() {
         getPoints()
@@ -99,27 +99,20 @@ function MapView() {
     return (
         <>
             <div style={{ position: 'relative' }}>
-                <div id="map" style={{ height: 'calc(100vh - 50px)' }}></div>
+                <div id="map"></div>
                 <button
+                    id="editButton"
                     onClick={editMap}
-                    style={{
-                        position: 'absolute',
-                        bottom: 10,
-                        right: 10,
-                        zIndex: 1000,
-                        width: 'auto',
-                        height: 'auto',
-                    }}
                 >
                     {buttonText}
                 </button>
             </div>
             {/* display a popUp if a position is recorded */}
-            {position && ( 
-                <CreatePoint 
-                    position={position} 
-                    onCreated={handleCreated} 
-                    uid={uid.current} 
+            {position && (
+                <CreatePoint
+                    position={position}
+                    onCreated={handleCreated}
+                    uid={uid.current}
                     onClose={() => setPosition(null)}
                 />
             )}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../services/supabaseClient'
 import MapView from './MapView.jsx'
-import NavBar from './NavBar.jsx'
+import NavBar from './components/NavBar.jsx'
 
 export default function Auth() {
     const [loading, setLoading] = useState(false)
@@ -76,7 +76,7 @@ export default function Auth() {
                     )} */}
 
                     <MapView></MapView>
-                    
+
 
                     <button onClick={() => setAuthenticated(false)} style={{ marginTop: '1rem' }}>
                         Se déconnecter
