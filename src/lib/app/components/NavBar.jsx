@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Pin } from './../../services/iconService.jsx';
+import { Icons } from './../../services/iconService.jsx';
 
 function NavBar() {
     return (
@@ -8,7 +8,7 @@ function NavBar() {
                 <li>
                     <Link to="/">
                         <div className="menuIcon">
-                            <Pin border={'#000000'} hatching={'#C0392B'}></Pin>
+                            <Icons type='pin' border={'#000000'} hatching={'#C0392B'}></Icons>
                             Carte
                         </div>
                     </Link>
@@ -16,20 +16,20 @@ function NavBar() {
                 <li>
                     <Link to="/inventory">
                         <div className="menuIcon">
-                            <Pin border={'#000000'} hatching={'#ffffff'}></Pin>
+                            <Icons type='sticker' border={'#000000'} hatching={'#C0392B'}></Icons>
                             Inventaire
                         </div>
                     </Link>
                 </li>
                 <li>
                     <div className="menuIcon">
-                        <Pin border={'#000000'} hatching={'#ffffff'}></Pin>
+                        <Icons type='pin' border={'#000000'} hatching={'#C0392B'}></Icons>
                         Classement
                     </div>
                 </li>
                 <li>
                     <div className="menuIcon">
-                        <Pin border={'#000000'} hatching={'#ffffff'}></Pin>
+                        <Icons type='profile' border={'#000000'} hatching={'#C0392B'}></Icons>
                         Profil
                     </div>
                 </li>
@@ -40,3 +40,4 @@ function NavBar() {
 }
 
 export default NavBar
+

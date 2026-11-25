@@ -3,20 +3,28 @@ import { supabase } from '../services/supabaseClient'
 import { LeafletMap, TileLayer, Marker, LayerGroup, Icon } from 'leaflet';
 import CreatePoint from './CreatePoint.jsx'
 import 'leaflet/styles.css';
-import { Pin } from '../services/iconService.jsx'
 import pinUrl from '../../assets/icons/pin.svg';
+import newPinUrl from '../../assets/icons/newPin.svg';
 
 function MapView() {
     const [buttonText, setButtonText] = useState("EDIT : OFF");
     const editMode = useRef(false);
     const uid = useRef()
     const points = useRef(null)
+    const tempNewPoint = useRef(null)
     const map = useRef()
     const [position, setPosition] = useState(null)
 
     var classicIcon = new Icon({
         iconUrl: pinUrl,
         iconSize: [38, 50],
+        iconAnchor: [19, 50],
+    })
+
+    var newIcon = new Icon({
+        iconUrl: newPinUrl,
+        iconSize: [38, 50],
+        iconAnchor: [19, 50],
     })
 
     function editMap() {
@@ -72,12 +80,20 @@ function MapView() {
         function onMapClick(e) {
             if (editMode.current) {
                 setPosition(e.latlng)
+
+                //Display a temp point while creating a point
+                tempNewPoint.current.clearLayers()
+                new Marker([e.latlng.lat, e.latlng.lng], { icon: newIcon }).addTo(tempNewPoint.current);
+
+                //focus on the point
+                map.current.setView(e.latlng)
             }
             else {
                 console.log("CREATION IMPOSSIBLE")
             }
         }
 
+        tempNewPoint.current = new LayerGroup().addTo(map.current);
         points.current = new LayerGroup().addTo(map.current);
         getPoints()
 
@@ -91,8 +107,15 @@ function MapView() {
 
     // Once a point is created we need to be able to display it
     function handleCreated() {
+        tempNewPoint.current.clearLayers()
         getPoints()
         setPosition(null)
+    }
+
+    // the creation modal is leaved without creating a point
+    function handleClose() {
+        setPosition(null)
+        tempNewPoint.current.clearLayers()
     }
 
 
@@ -113,9 +136,10 @@ function MapView() {
                     position={position}
                     onCreated={handleCreated}
                     uid={uid.current}
-                    onClose={() => setPosition(null)}
+                    onClose={handleClose}
                 />
-            )}
+            )
+            }
         </>
     )
 }
