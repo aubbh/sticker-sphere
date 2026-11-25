@@ -23,7 +23,7 @@ function NavBar() {
                 </li>
                 <li>
                     <div className="menuIcon">
-                        <Icons type='pin' border={'#000000'} hatching={'#C0392B'}></Icons>
+                        <Icons type='classement' border={'#000000'} hatching={'#C0392B'}></Icons>
                         Classement
                     </div>
                 </li>
