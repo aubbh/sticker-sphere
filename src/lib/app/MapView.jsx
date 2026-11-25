@@ -88,10 +88,7 @@ function MapView() {
                 //focus on the point
                 map.current.setView(e.latlng)
             }
-            else {
-                console.log("CREATION IMPOSSIBLE")
-            }
-            else {
+            else{
                 console.log("CREATION IMPOSSIBLE")
             }
         }
