@@ -1,4 +1,4 @@
-import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Pin } from './../../services/iconService.jsx';
 
 function NavBar() {
@@ -14,10 +14,12 @@ function NavBar() {
                     </Link>
                 </li>
                 <li>
-                    <div className="menuIcon">
-                        <Pin border={'#000000'} hatching={'#ffffff'}></Pin>
-                        Inventaire
-                    </div>
+                    <Link to="/inventory">
+                        <div className="menuIcon">
+                            <Pin border={'#000000'} hatching={'#ffffff'}></Pin>
+                            Inventaire
+                        </div>
+                    </Link>
                 </li>
                 <li>
                     <div className="menuIcon">
