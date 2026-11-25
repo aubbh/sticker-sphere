@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { supabase } from '../services/supabaseClient'
-import { LeafletMap, TileLayer, Marker, LayerGroup, Icon } from 'leaflet';
+import { LeafletMap, TileLayer, Marker, LayerGroup, Icon, Circle } from 'leaflet';
 import CreatePoint from './CreatePoint.jsx'
 import 'leaflet/styles.css';
 import pinUrl from '../../assets/icons/pin.svg';
 import newPinUrl from '../../assets/icons/newPin.svg';
+import profileUrl from '../../assets/icons/profile.svg';
 
 function MapView() {
     const [buttonText, setButtonText] = useState("EDIT : OFF");
@@ -25,6 +26,12 @@ function MapView() {
         iconUrl: newPinUrl,
         iconSize: [38, 50],
         iconAnchor: [19, 50],
+    })
+
+    var profileIcon = new Icon({
+        iconUrl: profileUrl,
+        iconSize: [38, 50],
+        iconAnchor: [19, 40],
     })
 
     function editMap() {
@@ -100,11 +107,26 @@ function MapView() {
 
         map.current.on('click', onMapClick);
 
+        //draw a marker on your position
+        function onLocationFound(e) {
+            const radius = e.accuracy;
+
+            new Marker(e.latlng, {icon: profileIcon}).addTo(map.current);
+                // .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+            new Circle(e.latlng, {radius}).addTo(map.current);
+        }
+
+        map.current.on('locationfound', onLocationFound);
+        map.current.locate({setView: true, maxZoom: 16});
+        
+
         return () => {
             map.current.remove();
         };
     }, [])
-    
+
+
     // Once a point is created we need to be able to display it
     function handleCreated() {
         tempNewPoint.current.clearLayers()
