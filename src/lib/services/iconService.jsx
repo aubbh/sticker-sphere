@@ -2,9 +2,9 @@ import pinSvg from '../../assets/icons/pin.svg?raw';
 import stickerSvg from '../../assets/icons/sticker.svg?raw';
 import profileSvg from '../../assets/icons/profile.svg?raw';
 
-export function Icons({type=pin, border='#000000', hatching='#000000', size=50}) {
+export function Icons({ type = pin, border = '#000000', hatching = '#000000', size = 50 }) {
     var typeSvg
-    switch (type){
+    switch (type) {
         case 'map':
         case 'pin':
             typeSvg = pinSvg;
@@ -21,8 +21,8 @@ export function Icons({type=pin, border='#000000', hatching='#000000', size=50})
             break;
     }
     return (
-        <div style={{width: size, height: size}}>
-            <span style={{display: 'block', width: '100%', height: '100%', '--border': border,'--hatching': hatching}} dangerouslySetInnerHTML={{ __html: typeSvg }} />
+        <div style={{ width: size, height: size }}>
+            <span style={{ flexShrink: 0, display: 'inline-block', width: size, height: size, '--border': border, '--hatching': hatching }} dangerouslySetInnerHTML={{ __html: typeSvg }} />
         </div>
     )
 }

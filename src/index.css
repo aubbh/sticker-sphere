@@ -1,5 +1,5 @@
 :root {
-  --text: #6b6375;
+  --text: #000000;
   --text-h: #08060d;
   --bg: #fff;
   --border: #e5e4e7;
@@ -25,9 +25,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --navbarHeight: 10svh;
+
   @media (max-width: 1024px) {
-    font-size: 16px;
+    font-size: 14px;
   }
+
+  /* CUSTOM CSS BY LESBIANS OF 409*/
+  --paddingFromDeviceLimits: 3vh;
+  --paddingFromDeviceLimitsHorizontal: 3vh;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -55,7 +61,7 @@ body {
 }
 
 #root {
-  width: 1126px;
+  height: 100svh;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -64,6 +70,7 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+
 }
 
 h1,
@@ -74,35 +81,114 @@ h2 {
 }
 
 h1 {
-  font-size: 56px;
+  font-size: 36px;
   letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+  text-align: start;
+  border: solid 1px;
+  margin: 0;
+  font-weight: 500;
+
+  @media (max-width: 400px) {
+    font-size: 26px;
+    margin: 0;
   }
 }
+
 h2 {
   font-size: 24px;
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
+
   @media (max-width: 1024px) {
     font-size: 20px;
   }
 }
+
 p {
   margin: 0;
+  text-align: start;
 }
 
-.navbar { 
-  display: flex; 
-  width: 100%; 
-  height: 50px;
-  justify-content: space-around;
-  position:absolute;
-  bottom:0px;
+/*------------ PAGE LAYOUT ------------ */
+
+.pageLayout {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.pageLayout>div:first-child {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.pageLayoutBody {
+  padding: var(--paddingFromDeviceLimits) var(--paddingFromDeviceLimits) 0 var(--paddingFromDeviceLimits);
+  height: 100%;
+  width: 100%;
+}
+
+/* ------------ NAVBAR ------------ */
+
+.navbar {
+  height: calc(var(--navbarHeight)+var(--paddingFromDeviceLimits));
+  width: 100%;
+  bottom: 0px;
   background-color: var(--bg);
+  border-top: solid 2px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0;
+  padding: var(--paddingFromDeviceLimits) 0;
+}
+
+.navbar li {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.menuIcon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+
+#editButton {
+  position: absolute;
+  bottom: var(--paddingFromDeviceLimits);
+  right: var(--paddingFromDeviceLimits);
+  /* z-index: 1000px; */
+  width: auto;
+  height: auto;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
 }
 
 .create-point {
@@ -115,4 +201,19 @@ p {
   padding: 1rem;
   border: none;
   z-index: 2000;
+}
+
+.gridView {
+  border: solid 2px blue;
+}
+
+.inventoryCard {
+  border: solid 1px magenta;
+  padding: 1rem;
+}
+
+.inventoryImg img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
