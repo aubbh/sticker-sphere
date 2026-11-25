@@ -1,21 +1,38 @@
-import { useState } from "react";
 import { supabase } from "../../services/supabaseClient";
 
+function InventoryCard({ sticker }) {
+    const variants = sticker.variant || [];
 
-function InventoryCard() {
+    // Default image: original style otherwise first to exist
+    const defaultVariant =
+        variants.find((v) => v.style?.label === "Original") || variants[0];
 
-    const { data } = supabase
-        .storage
-        .from("stickers")
-        .getPublicUrl("Lou_Antifasciste.PNG");
+    const imageUrl = defaultVariant?.image_url
+        ? supabase.storage
+            .from("stickers")
+            .getPublicUrl(defaultVariant.image_url).data.publicUrl
+        : "";
 
-    const imageUrl = data.publicUrl;
+    // Details list without same occurrences 
+    const styles = [...new Set(variants.map((v) => v.style?.label).filter(Boolean))];
+    const sizes = [...new Set(variants.flatMap((v) => v.size?.map((s) => s.label) || [])),];
+    const laminations = [...new Set(
+        variants.flatMap((v) => v.lamination?.map((l) => l.label) || [])
+    )];
 
     return (
         <div className="inventoryCard">
             <div className="inventoryImg">
-                <img src={imageUrl} alt="Sticker Lou! Antifasciste" />
+                {imageUrl && (
+                    <img src={imageUrl} alt={sticker.name || "Sticker"} />
+                )}
             </div>
+            <div className="spaceHeightM"></div>
+            <h2>{sticker.name}</h2>
+            <div className="spaceHeightS"></div>
+            <p>Styles : {styles.join(", ")}</p>
+            <p>Tailles : {sizes.join(", ")}</p>
+            <p>Lamination : {laminations.join(", ")}</p>
         </div>
     );
 }
