@@ -91,6 +91,9 @@ function MapView() {
             else {
                 console.log("CREATION IMPOSSIBLE")
             }
+            else {
+                console.log("CREATION IMPOSSIBLE")
+            }
         }
 
         tempNewPoint.current = new LayerGroup().addTo(map.current);
@@ -137,7 +140,6 @@ function MapView() {
                     {buttonText}
                 </button>
             </div>
-
             {/* display a popUp if a position is recorded */}
             {position && ( 
                 <CreatePoint 
