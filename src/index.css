@@ -105,16 +105,29 @@ p {
   margin: 0;
 }
 
+/*------------ PAGE LAYOUT ------------ */
 
+.pageLayout {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.pageLayout>div:first-child {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
 
 /* ------------ NAVBAR ------------ */
 
 .navbar {
+  height: var(--navbarHeight);
   width: 100%;
-  position: absolute;
   bottom: 0px;
   background-color: var(--bg);
-  border: solid 2px;
+  border-top: solid 2px;
 }
 
 .navbar ul {
@@ -154,7 +167,7 @@ p {
 
 #editButton {
   position: absolute;
-  bottom: var(--navbarHeight);
+  bottom: var(--paddingFromDeviceLimits);
   right: var(--paddingFromDeviceLimits);
   /* z-index: 1000px; */
   width: auto;
@@ -162,7 +175,7 @@ p {
 }
 
 #map {
-  height: calc(100vh - var(--navbarHeight));
+  height: 100%;
   width: 100%;
 }
 
