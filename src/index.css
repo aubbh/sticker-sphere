@@ -1,5 +1,5 @@
 :root {
-  --text: #6b6375;
+  --text: #000000;
   --text-h: #08060d;
   --bg: #fff;
   --border: #e5e4e7;
@@ -28,11 +28,12 @@
   --navbarHeight: 10svh;
 
   @media (max-width: 1024px) {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   /* CUSTOM CSS BY LESBIANS OF 409*/
-  --paddingFromDeviceLimits: 1vh;
+  --paddingFromDeviceLimits: 3vh;
+  --paddingFromDeviceLimitsHorizontal: 3vh;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -80,13 +81,16 @@ h2 {
 }
 
 h1 {
-  font-size: 56px;
+  font-size: 36px;
   letter-spacing: -1.68px;
-  margin: 32px 0;
+  text-align: start;
+  border: solid 1px;
+  margin: 0;
+  font-weight: 500;
 
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+  @media (max-width: 400px) {
+    font-size: 26px;
+    margin: 0;
   }
 }
 
@@ -103,6 +107,7 @@ h2 {
 
 p {
   margin: 0;
+  text-align: start;
 }
 
 /*------------ PAGE LAYOUT ------------ */
@@ -118,12 +123,19 @@ p {
   flex: 1;
   min-height: 0;
   position: relative;
+  box-sizing: border-box;
+}
+
+.pageLayoutBody {
+  padding: var(--paddingFromDeviceLimits) var(--paddingFromDeviceLimits) 0 var(--paddingFromDeviceLimits);
+  height: 100%;
+  width: 100%;
 }
 
 /* ------------ NAVBAR ------------ */
 
 .navbar {
-  height: var(--navbarHeight);
+  height: calc(var(--navbarHeight)+var(--paddingFromDeviceLimits));
   width: 100%;
   bottom: 0px;
   background-color: var(--bg);
@@ -189,4 +201,19 @@ p {
   padding: 1rem;
   border: none;
   z-index: 2000;
+}
+
+.gridView {
+  border: solid 2px blue;
+}
+
+.inventoryCard {
+  border: solid 1px magenta;
+  padding: 1rem;
+}
+
+.inventoryImg img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
