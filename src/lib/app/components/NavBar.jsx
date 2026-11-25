@@ -1,16 +1,17 @@
-import { Pin } from '../../services/iconService.jsx'
+import { BrowserRouter as Link } from 'react-router-dom';
+import { Pin } from './../../services/iconService.jsx';
 
 function NavBar() {
     return (
         <nav className="navbar">
             <ul>
                 <li>
-                    <a href="#" title="Carte">
+                    <Link to="/">
                         <div className="menuIcon">
                             <Pin border={'#000000'} hatching={'#C0392B'}></Pin>
                             Carte
                         </div>
-                    </a>
+                    </Link>
                 </li>
                 <li>
                     <div className="menuIcon">
@@ -32,7 +33,8 @@ function NavBar() {
                 </li>
             </ul>
         </nav >
-    )
+
+    );
 }
 
 export default NavBar

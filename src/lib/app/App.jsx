@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react'
-import { supabase } from '../services/supabaseClient.js'
-import Auth from './Auth.jsx'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Auth from './Auth.jsx';
 
-function App() {
-  return (
-    <div>
+const App = () => (
+  <Router>
+    <Routes>
+      <Route exact path="/" element={<Auth />} />
+    </Routes>
+  </Router>
+);
 
-      <Auth ></Auth>
-
-    </div>
-  )
-}
-
-export default App
+export default App;
