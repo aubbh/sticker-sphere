@@ -8,7 +8,7 @@ function NavBar() {
                 <li>
                     <Link to="/">
                         <div className="menuIcon">
-                            <Icons type='pin' border={'#000000'} hatching={'#C0392B'}></Icons>
+                            <Icons type='pin' border={'#000000'} hatching={'#C0392B'} size={30}></Icons>
                             Carte
                         </div>
                     </Link>
@@ -16,20 +16,20 @@ function NavBar() {
                 <li>
                     <Link to="/inventory">
                         <div className="menuIcon">
-                            <Icons type='sticker' border={'#000000'} hatching={'#C0392B'}></Icons>
+                            <Icons type='sticker' border={'#000000'} hatching={'#C0392B'} size={30}></Icons>
                             Inventaire
                         </div>
                     </Link>
                 </li>
                 <li>
                     <div className="menuIcon">
-                        <Icons type='classement' border={'#000000'} hatching={'#C0392B'}></Icons>
+                        <Icons type='classement' border={'#000000'} hatching={'#C0392B'} size={30}></Icons>
                         Classement
                     </div>
                 </li>
                 <li>
                     <div className="menuIcon">
-                        <Icons type='profile' border={'#000000'} hatching={'#C0392B'}></Icons>
+                        <Icons type='profile' border={'#000000'} hatching={'#C0392B'} size={30}></Icons>
                         Profil
                     </div>
                 </li>

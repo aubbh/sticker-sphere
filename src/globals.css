@@ -2,15 +2,15 @@
 
 .spaceHeightL {
     height: 1.5rem;
-    border: solid 1px red;
+    /* border: solid 1px red; */
 }
 
 .spaceHeightM {
     height: 1rem;
-    border: solid 1px blue;
+    /* border: solid 1px blue; */
 }
 
 .spaceHeightS {
     height: 0.5rem;
-    border: solid 1px yellowgreen;
+    /* border: solid 1px yellowgreen; */
 }
